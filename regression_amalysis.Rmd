@@ -28,9 +28,8 @@ tidy_data$CONDICION <- as.factor(tidy_data$CONDICION)
 p <- ggplot(tidy_data, aes(maxP, V50, colour = CONDICION))
 p + geom_point() + geom_smooth(method = "lm", se = FALSE) +
   xlab("Maximum Power (W)") + ylab("Velocity (m/s)") + 
-  title(main = "Relationship between Sprint swimming and Power output") +
   theme(panel.background = element_blank(),axis.line = element_line(colour = "black"))
 ```
 
 ## Conclusion
-There is a strong relationship between swimming velocity and power output regardless of skill level. We can therefore strongly recommend the implementation of strength training as a part of training programme for swimming performance enhancement.
+There is a strong relationship between swimming velocity and power output regardless of skill level.
