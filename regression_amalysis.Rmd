@@ -1,0 +1,11 @@
+---
+title: 'Swimming performance: Regression analysis'
+author: "Cristian"
+date: "5/14/2020"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
