@@ -4,8 +4,32 @@ author: "Cristian"
 date: "5/14/2020"
 output: pdf_document
 ---
+## Relationship between sprint swimming velocity and power output
+Previous research has explored the relationship between **swimming velocity** and **power output** in highly trained swimmers. However, what these studies had in common  it was their heterogenity. It means that different levels of skilled swimmers were included in the samples. Therefore, it was easier to find significant correlations between the two investigated variables. Thus, we aimed to: 
+- Investigate the relationship between **swimming velocity** and **power output** in different group of    swimmers.
+- Model the relationship between thw investigated variables for each group of swimmers
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+## Methods
+This was a quasi-experimental study. 38 swimmers (height: 175 ± 15cm; arm span: 180 ± 11 cm; VO^2^max: 61 ± 7.3 mL/kg/min^-1^) volunteered for the study.
+
+## Results
+```{r, simple-ggplot, echo=FALSE, message=FALSE, fig.width=6, fig.height=3, fig.align='center'}
+library(tidyverse)
+library(ggplot2)
+library(readxl)
+directory <- "~/Desktop/R for Data Science/master thesis data"
+pathf <- file.path(directory, 'muestra39.xlsx')
+mt_data <- read_xlsx(pathf)
+
+tidy_data <- mt_data %>% select(FINA, V50, CONDICION, Gender, MXP_C2, MP_C2) %>%
+  rename(maxP = "MXP_C2", mP = "MP_C2")
+tidy_data$CONDICION <- as.factor(tidy_data$CONDICION)
+
+p <- ggplot(tidy_data, aes(maxP, V50, colour = CONDICION))
+p + geom_point() + geom_smooth(method = "lm", se = FALSE) +
+  xlab("Maximum Power (W)") + ylab("Velocity (m/s)") + 
+  theme(panel.background = element_blank(),axis.line = element_line(colour = "black"))
 ```
 
+## Conclusion
+There is a strong relationship between swimming velocity and power output regardless of skill level.
